@@ -33,9 +33,9 @@ class PlayerRuntime(
 
     private val database = DatabaseFactory.createDatabase(startCommand.databaseUrl)
     private val jooqPlayerRepository = JooqPlayerRepository(database)
-    private val pubSubClient = PubSubClient(startCommand.pubSubGrpcHost, startCommand.pubSubGrpcPort)
-    private val playerConnectionHandler = PlayerConnectionHandler(jooqPlayerRepository)
     private val authCallCredentials = AuthCallCredentials(startCommand.authSecret)
+    private val pubSubClient = PubSubClient(startCommand.pubSubGrpcHost, startCommand.pubSubGrpcPort, authCallCredentials)
+    private val playerConnectionHandler = PlayerConnectionHandler(jooqPlayerRepository)
 
     private val controllerChannel =
         ManagedChannelBuilder.forAddress(startCommand.controllerHost, startCommand.controllerPort)
