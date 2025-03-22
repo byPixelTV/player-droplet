@@ -5,6 +5,9 @@ plugins {
 
 dependencies {
     api(project(":player-shared"))
+    api(rootProject.libs.bundles.proto)
+    api(rootProject.libs.simplecloud.droplet.api)
+    api(rootProject.libs.simplecloud.pubsub)
     api(rootProject.libs.bundles.jooq)
     api(rootProject.libs.sqlite.jdbc)
 

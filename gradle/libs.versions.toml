@@ -19,7 +19,7 @@ paper = "1.20-R0.1-SNAPSHOT"
 spigot = "1.20-R0.1-SNAPSHOT"
 bungeecord = "1.20-R0.1-SNAPSHOT"
 clikt = "4.3.0"
-simplecloud-controller = "0.0.30-dev.e6c9f03"
+simplecloud-controller = "0.0.30-SNAPSHOT.2660ec8"
 sonatype-central-portal-publisher = "1.2.3"
 
 [libraries]
