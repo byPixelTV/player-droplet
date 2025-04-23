@@ -30,6 +30,11 @@ interface OfflineCloudPlayer {
     fun getLastLogin(): Long
 
     /**
+     * @returns the last connected server name of the player.
+     */
+    fun getLastConnectedServerName(): String?
+
+    /**
      * @returns the online time of the player.
      */
     fun getOnlineTime(): Long

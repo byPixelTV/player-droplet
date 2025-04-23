@@ -12,7 +12,8 @@ jooq = "3.19.3"
 configurate = "4.1.2"
 sqlite-jdbc = "3.44.1.0"
 gson-version = "2.10.1"
-adventure = "4.14.0"
+adventure-api = "4.17.0"
+adventure-text-minimessage = "4.17.0"
 adventur-platform = "4.3.4"
 velocity = "3.1.1"
 paper = "1.20-R0.1-SNAPSHOT"
@@ -21,6 +22,10 @@ bungeecord = "1.20-R0.1-SNAPSHOT"
 clikt = "4.3.0"
 simplecloud-controller = "0.0.30-dev.e6c9f03"
 sonatype-central-portal-publisher = "1.2.3"
+cloud-core = "2.0.0"
+cloud-velocity = "2.0.0-beta.10"
+cloud-bungeecord = "2.0.0-beta.10"
+
 
 [libraries]
 kotlin-jvm = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
@@ -57,8 +62,9 @@ jooq-kotlin-coroutines = { module = "org.jooq:jooq-kotlin-coroutines", version.r
 
 gson = { module = "com.google.code.gson:gson", version.ref = "gson-version" }
 
-adventure = { module = "net.kyori:adventure-api", version.ref = "adventure" }
-adventure-gson = { module = "net.kyori:adventure-text-serializer-gson", version.ref = "adventure" }
+adventure = { module = "net.kyori:adventure-api", version.ref = "adventure-api" }
+adventure-text-minimessage = { module = "net.kyori:adventure-text-minimessage", version.ref = "adventure-text-minimessage" }
+adventure-gson = { module = "net.kyori:adventure-text-serializer-gson", version.ref = "adventure-api" }
 adventure-platform-spigot = { module = "net.kyori:adventure-platform-bukkit", version.ref = "adventur-platform" }
 adventure-platform-bungeecord = { module = "net.kyori:adventure-platform-bungeecord", version.ref = "adventur-platform" }
 
@@ -68,6 +74,9 @@ configurate-extra-kotlin = { module = "org.spongepowered:configurate-extra-kotli
 sqlite-jdbc = { module = "org.xerial:sqlite-jdbc", version.ref = "sqlite-jdbc" }
 clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt" }
 
+cloud-core = { module = "org.incendo:cloud-core", version.ref = "cloud-core" }
+cloud-velocity = { module = "org.incendo:cloud-velocity", version.ref = "cloud-velocity" }
+cloud-bungeecord = { module = "org.incendo:cloud-bungee", version.ref = "cloud-bungeecord" }
 
 [bundles]
 log4j = [

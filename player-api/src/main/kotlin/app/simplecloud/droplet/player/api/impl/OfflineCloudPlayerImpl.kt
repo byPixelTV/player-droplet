@@ -30,12 +30,16 @@ open class OfflineCloudPlayerImpl(
         return this.configurationWrapper.lastLogin
     }
 
+    override fun getLastConnectedServerName(): String? {
+        return this.configurationWrapper.playerConnection.lastServerName
+    }
+
     override fun getOnlineTime(): Long {
         return this.configurationWrapper.onlineTime
     }
 
     override fun isOnline(): Boolean {
-        return false
+        return this.configurationWrapper.playerConnection.online
     }
 
 }

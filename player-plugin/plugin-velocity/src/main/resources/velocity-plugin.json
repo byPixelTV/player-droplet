@@ -7,5 +7,10 @@
     "Fllip"
   ],
   "main": "app.simplecloud.droplet.player.plugin.velocity.PlayerVelocityPlugin",
-  "dependencies": []
+  "dependencies": [
+    {
+      "id": "simplecloud-api",
+      "optional": true
+    }
+  ]
 }
