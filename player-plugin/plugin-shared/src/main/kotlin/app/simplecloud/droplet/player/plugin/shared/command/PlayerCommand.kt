@@ -265,15 +265,6 @@ class PlayerCommand<C : CloudSender>(
             commandManager.commandBuilder("players")
                 .literal("send")
                 .required(
-                    "server",
-                    stringParser(),
-                    BlockingSuggestionProvider { _, _ ->
-                        proxyHandler.getServers().map { servers ->
-                            Suggestion.suggestion(servers)
-                        }
-                    }
-                )
-                .required(
                     "user",
                     stringParser(),
                     SuggestionProvider { _, _ ->
@@ -282,12 +273,20 @@ class PlayerCommand<C : CloudSender>(
                         }
                     }
                 )
+                .required(
+                    "server",
+                    stringParser(),
+                    BlockingSuggestionProvider { _, _ ->
+                        proxyHandler.getServers().map { servers ->
+                            Suggestion.suggestion(servers)
+                        }
+                    }
+                )
                 .handler { context: CommandContext<C> ->
                     println("send player")
-                    val server = context.get<String>("server")
                     val user = context.get<String>("user")
+                    val server = context.get<String>("server")
 
-                    context.sender().sendMessage(Component.text("Moino wir versuchen den zu senden"))
                     if (proxyHandler.connectPlayer(user, server)) {
                         context.sender().sendMessage(
                             MiniMessage.miniMessage().deserialize(

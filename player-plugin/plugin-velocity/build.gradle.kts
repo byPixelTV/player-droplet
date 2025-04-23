@@ -11,6 +11,7 @@ tasks {
     shadowJar {
         dependencies {
             exclude(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
+            exclude(dependency("org.jetbrains.kotlin:kotlin-reflect"))
             relocate("org.incendo.cloud", "app.simplecloud.droplet.player.external")
         }
     }

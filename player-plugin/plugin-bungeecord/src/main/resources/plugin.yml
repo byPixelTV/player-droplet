@@ -2,3 +2,5 @@ name: SimpleCloud-Player
 main: app.simplecloud.droplet.player.plugin.bungeecord.PlayerBungeecordPlugin
 version: 1.0
 author: EinsLucaaa & Fllip
+softdepend:
+  - simplecloud-api

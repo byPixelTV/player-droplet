@@ -6,9 +6,9 @@ import org.spongepowered.configurate.objectmapping.ConfigSerializable
 data class MessageConfig(
 
     val playerHelpTitle: String = "<color:#38bdf8><bold>⚡</bold></color> <color:#ffffff>Commands of Player Command",
-    val playerInfoCommand: String = "   <color:#a3a3a3>/players info <user>",
+    val playerInfoCommand: String = "   <color:#a3a3a3>/players info user <user>",
     val playerInfoServerCommand: String = "   <color:#a3a3a3>/players info server [server]",
-    val playerSendCommand: String = "   <color:#a3a3a3>/players send <server> <user>",
+    val playerSendCommand: String = "   <color:#a3a3a3>/players send <user> <server>",
     val playerMessageCommand: String = "   <color:#a3a3a3>/players message <user> <message>",
 
     val userInfoTitle: String = "<color:#38bdf8><bold>⚡</bold></color> <color:#ffffff>Information of user <user> <online>",
