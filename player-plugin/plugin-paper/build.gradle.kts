@@ -13,7 +13,6 @@ tasks {
             exclude(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
             relocate("io.grpc", "app.simplecloud.relocate.grpc")
             relocate("com.google.protobuf", "app.simplecloud.relocate.protobuf")
-
         }
     }
 }

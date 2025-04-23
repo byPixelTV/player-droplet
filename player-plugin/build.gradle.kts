@@ -21,7 +21,4 @@ subprojects {
         api(rootProject.libs.simplecloud.pubsub)
         api(rootProject.libs.bundles.proto)
     }
-
-
-
 }

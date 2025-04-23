@@ -21,6 +21,7 @@ spigot = "1.20-R0.1-SNAPSHOT"
 bungeecord = "1.20-R0.1-SNAPSHOT"
 clikt = "4.3.0"
 simplecloud-controller = "0.0.30-dev.e6c9f03"
+sonatype-central-portal-publisher = "1.2.3"
 cloud-core = "2.0.0"
 cloud-velocity = "2.0.0-beta.10"
 cloud-bungeecord = "2.0.0-beta.10"
@@ -105,3 +106,4 @@ configurate = [
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 jooq-codegen = { id = "org.jooq.jooq-codegen-gradle", version.ref = "jooq" }
+sonatype-central-portal-publisher = { id = "net.thebugmc.gradle.sonatype-central-portal-publisher", version.ref = "sonatype-central-portal-publisher" }

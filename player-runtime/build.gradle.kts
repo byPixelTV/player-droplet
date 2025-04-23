@@ -1,5 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     application
     id("org.jooq.jooq-codegen-gradle") version "3.19.3"
@@ -9,21 +7,17 @@ dependencies {
     api(project(":player-shared"))
     api(rootProject.libs.bundles.jooq)
     api(rootProject.libs.sqlite.jdbc)
-    jooqCodegen(rootProject.libs.jooq.meta.extensions)
+
     implementation(rootProject.libs.bundles.log4j)
     implementation(rootProject.libs.clikt)
     implementation(rootProject.libs.simplecloud.controller)
     implementation(rootProject.libs.sqlite.jdbc)
+
+    jooqCodegen(rootProject.libs.jooq.meta.extensions)
 }
 
 tasks.named("compileKotlin") {
     dependsOn(tasks.jooqCodegen)
-}
-
-tasks {
-    named<ShadowJar>("shadowJar") {
-        archiveFileName.set("player-runtime.jar")
-    }
 }
 
 application {
