@@ -13,6 +13,8 @@ tasks {
             exclude(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
             exclude(dependency("org.jetbrains.kotlin:kotlin-reflect"))
             relocate("org.incendo.cloud", "app.simplecloud.droplet.player.external")
+            relocate("io.grpc", "app.simplecloud.relocate.grpc")
+            relocate("com.google.protobuf", "app.simplecloud.relocate.protobuf")
         }
     }
 }
