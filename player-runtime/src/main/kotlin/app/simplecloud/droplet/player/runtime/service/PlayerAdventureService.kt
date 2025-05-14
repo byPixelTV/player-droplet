@@ -4,6 +4,8 @@ import app.simplecloud.droplet.player.runtime.repository.JooqPlayerRepository
 import app.simplecloud.droplet.player.shared.rabbitmq.RabbitMqChannelNames
 import app.simplecloud.pubsub.PubSubClient
 import build.buf.gen.simplecloud.droplet.player.v1.*
+import io.grpc.Status
+import io.grpc.StatusException
 import org.apache.logging.log4j.LogManager
 
 class PlayerAdventureService(
@@ -15,7 +17,7 @@ class PlayerAdventureService(
         val cloudPlayer = onlinePlayerRepository.findByUniqueId(request.uniqueId)
         if (cloudPlayer == null) {
             LOGGER.warn("CloudPlayer with uniqueId ${request.uniqueId} is not online")
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
 
         pubSubClient.publish(
@@ -35,7 +37,7 @@ class PlayerAdventureService(
             )
             return SendActionbarResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -48,7 +50,7 @@ class PlayerAdventureService(
             )
             return SendPlayerListHeaderAndFooterResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -60,7 +62,7 @@ class PlayerAdventureService(
             )
             return SendBossBarResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -72,7 +74,7 @@ class PlayerAdventureService(
             )
             return SendBossBarHideResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -84,7 +86,7 @@ class PlayerAdventureService(
             )
             return SendClearTitleResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -96,7 +98,7 @@ class PlayerAdventureService(
             )
             return SendOpenBookResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -108,7 +110,7 @@ class PlayerAdventureService(
             )
             return SendPlaySoundResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -120,7 +122,7 @@ class PlayerAdventureService(
             )
             return SendPlaySoundToCoordinatesResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -132,7 +134,7 @@ class PlayerAdventureService(
             )
             return SendResetTitleResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -144,7 +146,7 @@ class PlayerAdventureService(
             )
             return SendStopSoundResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -158,7 +160,7 @@ class PlayerAdventureService(
 
             return SendTitlePartSubTitleResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -173,7 +175,7 @@ class PlayerAdventureService(
 
             return SendTitlePartTitleResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
     }
 
@@ -188,13 +190,8 @@ class PlayerAdventureService(
 
             return SendTitlePartTimesResponse.newBuilder().build()
         } else {
-            throw IllegalArgumentException("CloudPlayer with uniqueId ${request.uniqueId} is not online")
+            throw StatusException(Status.NOT_FOUND.withDescription("CloudPlayer with uniqueId ${request.uniqueId} is not online"))
         }
-    }
-
-
-    companion object {
-        private val LOGGER = LogManager.getLogger(PlayerAdventureService::class.java)
     }
 
     private suspend fun playerIsOnline(uniqueId: String): Boolean {
@@ -205,6 +202,10 @@ class PlayerAdventureService(
         } else {
             true
         }
+    }
+
+    companion object {
+        private val LOGGER = LogManager.getLogger(PlayerAdventureService::class.java)
     }
 
 }
