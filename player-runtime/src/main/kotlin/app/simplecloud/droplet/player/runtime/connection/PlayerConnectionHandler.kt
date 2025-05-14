@@ -32,7 +32,7 @@ class PlayerConnectionHandler(
         val sessionTime = System.currentTimeMillis() - onlinePlayer.lastLogin
         val offlinePlayerEntity = OfflinePlayerEntity(
             onlinePlayer.uniqueId,
-            onlinePlayer.name.lowercase(),
+            onlinePlayer.name,
             onlinePlayer.displayName,
             onlinePlayer.firstLogin,
             System.currentTimeMillis(),
@@ -49,7 +49,7 @@ class PlayerConnectionHandler(
      private suspend fun createOfflinePlayer(request: CloudPlayerLoginRequest): OfflinePlayerEntity {
         val offlinePlayerEntity = OfflinePlayerEntity(
             request.uniqueId,
-            request.name.lowercase(),
+            request.name,
             request.name,
             System.currentTimeMillis(),
             System.currentTimeMillis(),

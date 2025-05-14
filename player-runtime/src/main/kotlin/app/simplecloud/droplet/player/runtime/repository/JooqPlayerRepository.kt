@@ -12,6 +12,7 @@ import app.simplecloud.droplet.player.shared.db.tables.references.PLAYER_CONNECT
 import kotlinx.coroutines.flow.toCollection
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactive.awaitFirstOrNull
+import org.jooq.impl.DSL
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.util.*
@@ -31,14 +32,14 @@ class JooqPlayerRepository(
         )
             .values(
                 player.uniqueId,
-                player.name.lowercase(),
+                player.name,
                 player.displayName,
                 LocalDateTime.ofEpochSecond(player.firstLogin / 1000, 0, ZoneOffset.UTC),
                 LocalDateTime.ofEpochSecond(player.lastLogin / 1000, 0, ZoneOffset.UTC),
                 player.onlineTime
             )
             .onDuplicateKeyUpdate()
-            .set(OFFLINE_PLAYERS.NAME, player.name.lowercase())
+            .set(OFFLINE_PLAYERS.NAME, player.name)
             .set(OFFLINE_PLAYERS.DISPLAY_NAME, player.displayName)
             .set(OFFLINE_PLAYERS.FIRST_LOGIN, LocalDateTime.ofEpochSecond(player.firstLogin / 1000, 0, ZoneOffset.UTC))
             .set(OFFLINE_PLAYERS.LAST_LOGIN, LocalDateTime.ofEpochSecond(player.lastLogin / 1000, 0, ZoneOffset.UTC))
@@ -116,7 +117,7 @@ class JooqPlayerRepository(
 
     override suspend fun findByName(name: String): OfflinePlayerEntity? {
         return datbase.context.selectFrom(OfflinePlayers.OFFLINE_PLAYERS)
-            .where(OfflinePlayers.OFFLINE_PLAYERS.NAME.eq(name))
+            .where(DSL.lower(OfflinePlayers.OFFLINE_PLAYERS.NAME).eq(name.lowercase()))
             .awaitFirstOrNull()
             ?.let { mapOfflinePlayersRecordToEntity(it) }
     }
